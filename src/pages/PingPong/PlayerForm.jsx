@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import { handleUserName } from '../../service';
+import constants from  '../../constants'
 
 
 function PlayerForm() {
@@ -28,11 +29,11 @@ function PlayerForm() {
   return (
     <Paper container md={12} className={classes.gridContainer}>
       <Typography variant="h5"  className={classes.headingText} >
-              Please enter name of Players !!
+              {constants.formTitle}
           </Typography>
       <Grid className = {classes.gridField}>
           <Typography variant="h6" className={classes.textFields} >
-              Player 1 Name
+          {constants.playerOneNameTitle}
           </Typography>
           <TextField placeholder="enter name.." onChange = {(e)=>setPlayerOne(e.target.value)} InputProps={{
     className: classes.multilineColor
@@ -40,14 +41,14 @@ function PlayerForm() {
       </Grid>
       <Grid className = {classes.gridField}>
         <Typography variant="h6" className={classes.textFields} >
-            Player 2 Name
+        {constants.playerTwoNameTitle}
         </Typography>
         <TextField placeholder = "enter name.."  onChange = {(e)=>setPlayerTwo(e.target.value)} InputProps={{
     className: classes.multilineColor
   }} />
       </Grid>
       
-      <Button variant="outlined" className = {classes.continueBtn} onClick={handlePage} disabled={(handleValidation())}>Continue</Button>
+      <Button variant="outlined" className = {classes.continueBtn} onClick={handlePage} disabled={(handleValidation())}>{constants.formBtn}</Button>
     </Paper>
   );
 }

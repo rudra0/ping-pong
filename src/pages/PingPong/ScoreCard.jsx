@@ -2,8 +2,9 @@ import React,{useState, useEffect} from 'react';
 import { Button, Grid, Paper, Typography} from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
+import constants from '../../constants';
 
-
+// component showing and traking the result of the game.
 export default function ScoreCard() {
 
   const [playerOneScore, setPlayerOneScore] = useState(0)
@@ -21,7 +22,7 @@ export default function ScoreCard() {
   },[playerOneScore, playerTwoScore])
 
   const handleSave = ()=>{
-    alert("Thankyou for Watching Game hope you enjoyed it");
+    alert(constants.alertMsg);
     history.push("/")
 
   }
@@ -29,7 +30,7 @@ export default function ScoreCard() {
   return (
     <Paper container md={12} className={classes.gridContainer}>
       <Typography variant="h4"  className={classes.headingText} >
-              Scorecard !!
+             {constants.scoreCardTitle}
           </Typography>
       <Grid className = {classes.gridField} >
           <Typography variant="h6" className={classes.textFields} >
@@ -40,7 +41,7 @@ export default function ScoreCard() {
       </Grid>
       <Grid className = {classes.gridField} >
       <Typography variant="h6" className={classes.resultsTextFields2} >
-              Wins:
+      {constants.win}
           </Typography>
           <Typography variant="h4" className={classes.resultsTextFields2} >
               {playerOneScore}
@@ -55,8 +56,8 @@ export default function ScoreCard() {
         <Button variant="outlined" color="primary" className = {classes.continueBtn} onClick={()=>setPlayerTwoScore(playerTwoScore+1)}>Add Win</Button>
       </Grid>
       <Grid className = {classes.gridField} >
-      <Typography variant="h6" className={classes.resultsTextFields1} >
-              Wins:
+          <Typography variant="h6" className={classes.resultsTextFields1} >
+                {constants.win}
           </Typography>
           <Typography variant="h4" className={classes.resultsTextFields1} >
               {playerTwoScore}
@@ -65,15 +66,15 @@ export default function ScoreCard() {
           
       </Grid>
       <br></br>
-      <Typography variant="h6" className={classes.outputField} >
-              Current Winner: ({
-                playerOneScore> playerTwoScore? playerOne : playerOneScore< playerTwoScore? playerTwo: "Draw"
-              })
+          <Typography variant="h6" className={classes.outputField} >
+            {constants.winner} ({
+                    playerOneScore> playerTwoScore? playerOne : playerOneScore< playerTwoScore? playerTwo: "Draw"
+                  })
           </Typography>
           <Typography variant="h6" className={classes.outputField} >
-              Win Difference: ({difference})
+            {constants.differences} ({difference})
           </Typography> 
-      <Button  className = {classes.saveBtn} onClick = {handleSave}>Save Game</Button>
+      <Button  className = {classes.saveBtn} onClick = {handleSave}>{constants.saveGame}</Button>
     </Paper>
   );
 }
@@ -98,10 +99,9 @@ const useStyles = makeStyles(theme => ({
     alignItems:"center"
     
   },
-  continueBtn:{textAlign:"center", color:"black", marginTop: "30px", color: "black",
-  backgroundColor: "yellow",
+  continueBtn:{textAlign:"center", marginTop: "30px", color: "black",borderColor: "orange",
   "&:hover": {
-    backgroundColor: "yellow"}, 
+    backgroundColor: "orange"}, 
   },
   
   headingText:{
